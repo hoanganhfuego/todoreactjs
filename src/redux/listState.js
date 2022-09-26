@@ -2,6 +2,27 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = JSON.parse(localStorage.getItem('todoList')) || []
 
+function search(state, action){
+    const {title, deadline, deadline2, status} = action.payload
+    let searchValue = [...state.todolist]
+    if(title) {
+        searchValue = searchValue.filter(todo => {
+            return todo.title.includes(title)
+        })
+    }
+    if(deadline && deadline2) {
+        let minDate = new Date(deadline)
+        let maxDate = new Date(deadline2)
+        searchValue = searchValue.filter(todo => {
+            return (minDate < new Date(todo.deadline) && new Date(todo.deadline) < maxDate)
+        })
+    }
+    if(status) {
+        searchValue = searchValue.filter(todo => todo.status === status)
+    }
+    state.search.value = [...searchValue]
+}
+
 export const ListStore = createSlice({
     name: 'ListStore',
     initialState: {
@@ -45,26 +66,7 @@ export const ListStore = createSlice({
             })
             localStorage.setItem('todoList', JSON.stringify(state.todolist))
         },
-        searchTodo: (state, action)=>{
-            const {title, deadline, deadline2, status} = action.payload
-            let searchValue = [...state.todolist]
-            if(title) {
-                searchValue = searchValue.filter(todo => {
-                    return todo.title.includes(title)
-                })
-            }
-            if(deadline && deadline2) {
-                let minDate = new Date(deadline)
-                let maxDate = new Date(deadline2)
-                searchValue = searchValue.filter(todo => {
-                    return (minDate < new Date(todo.deadline) && new Date(todo.deadline) < maxDate)
-                })
-            }
-            if(status) {
-                searchValue = searchValue.filter(todo => todo.status === status)
-            }
-            state.search.value = [...searchValue]
-        },
+        searchTodo: search,
         chooseSearch: (state, action) =>{
             state.search.correct = !state.search.correct
             state.search.value = []
