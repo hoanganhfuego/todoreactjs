@@ -17,6 +17,7 @@ export const ListStore = createSlice({
     },
     reducers: {
         addTodo: (state, action)=> {
+            console.log(action.payload)
             state.todolist.unshift(action.payload)
             localStorage.setItem('todoList', JSON.stringify(state.todolist))
         },
@@ -34,6 +35,7 @@ export const ListStore = createSlice({
         editTodo: (state, action) => {
             state.todolist.forEach((todo, index)=>{
                 if(todo.id === action.payload){
+                    console.log(state.isEditChoose.value, todo)
                     state.isEditChoose.value = todo
                     state.isEditChoose.correct = true
                 }
@@ -41,6 +43,7 @@ export const ListStore = createSlice({
             state.search.correct = false
         },
         updateTodo: (state, action) => {
+            console.log('xin chao', action.payload)
             state.todolist.forEach((todo, index)=>{
                 if(todo.id === action.payload.id){
                     state.todolist.splice(index, 1, action.payload)

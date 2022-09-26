@@ -19,7 +19,7 @@ export default function Input(){
             reset({title: '', status: 'todo', deadline:''})
         }
         else{
-            const id = new Date()
+            const id = new Date().toISOString()
             dispatch(addTodo({...data, id: id}))
             reset()
         }
@@ -52,7 +52,7 @@ export default function Input(){
                 </select>
                 {switchBtn()}
             </form>
-            <div className="search-bar rounded-lg border-2 bg-color2 h-[100%] w-[60px] flex items-center justify-center absolute cursor-pointer" onClick={()=>{dispatch(chooseSearch()); reset({title: '', status: 'todo', deadline:'', deadline2:''})}}><i class="fa-solid fa-magnifying-glass text-lg"></i></div>
+            <div className="search-bar rounded-lg border-2 bg-color2 h-[100%] w-[60px] flex items-center justify-center absolute cursor-pointer" onClick={()=>{dispatch(chooseSearch()); reset({title: '', status: 'todo', deadline:'', deadline2:''})}}><i className="fa-solid fa-magnifying-glass text-lg"></i></div>
         </div>
     )
 }
