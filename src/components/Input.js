@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, updateTodo, searchTodo, chooseSearch } from "../redux/listState";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+// tạo 3 component: Add.js , Update.js , SearchTodo.js
 
 export default function Input(){
     const dispatch = useDispatch()
