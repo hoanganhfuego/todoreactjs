@@ -22,28 +22,20 @@ export const ListStore = createSlice({
             localStorage.setItem('todoList', JSON.stringify(state.todolist))
         },
         deleteTodo: (state, action) => {
-            state.todolist.forEach((todo, index) => {
-                if(todo.id === action.payload) state.todolist.splice(index,1)
-            });
+            let index = state.todolist.findIndex(todo => todo.id === action.payload)
+            state.todolist.splice(index,1)
             if(state.search.value.length){
-                state.search.value.forEach((todo, index) => {
-                    if(todo.id === action.payload) state.search.value.splice(index,1)
-                });
+                let indexSearch = state.search.value.findIndex(todo => todo.id === action.payload)
+                state.search.value.splice(indexSearch,1)
             }
             localStorage.setItem('todoList', JSON.stringify(state.todolist))
         },
         editTodo: (state, action) => {
-            state.todolist.forEach((todo, index)=>{
-                if(todo.id === action.payload){
-                    console.log(state.isEditChoose.value, todo)
-                    state.isEditChoose.value = todo
-                    state.isEditChoose.correct = true
-                }
-            })
+            state.isEditChoose.correct = true
+            state.isEditChoose.value = action.payload
             state.search.correct = false
         },
         updateTodo: (state, action) => {
-            console.log('xin chao', action.payload)
             state.todolist.forEach((todo, index)=>{
                 if(todo.id === action.payload.id){
                     state.todolist.splice(index, 1, action.payload)

@@ -21,7 +21,7 @@ export default function Todo({todo}){
             <p className="min-w-[200px] text-center">{deadline}</p>
             <p className="min-w-[200px] text-center">{status}</p>
             <div className="min-w-[200px] flex justify-around">
-                <button className="border-2 rounded-lg min-w-[60px] hover:bg-black text-center" onClick={()=>dispatch(editTodo(id))}>edit</button>
+                <button className="border-2 rounded-lg min-w-[60px] hover:bg-black text-center" onClick={()=>dispatch(editTodo(todo))}>edit</button>
                 <button className="border-2 rounded-lg min-w-[60px] hover:bg-black text-center" onClick={()=>dispatch(deleteTodo(id))}>delete</button>
             </div>
         </div>
