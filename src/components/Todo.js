@@ -12,7 +12,7 @@ export default function Todo({todo}){
             return 'bg-[#f44336]'
         }
         if(status === 'done') return 'bg-[#52b640]'
-        return 'bg-zinc-900/50'
+        return 'bg-zinc-900/80'
     }
 
     return (

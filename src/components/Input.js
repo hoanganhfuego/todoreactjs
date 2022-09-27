@@ -6,10 +6,10 @@ import { useEffect } from "react";
 // tạo 3 component: Add.js , Update.js , SearchTodo.js
 
 export default function Input(){
+    const {register, handleSubmit, reset, formState: { errors } } = useForm()
     const dispatch = useDispatch()
     const editChoose = useSelector(state => state.listTodo.isEditChoose)
     const searchChoose = useSelector(state => state.listTodo.search.correct)
-    const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const onSubmit = data => {
         if(searchChoose){
             dispatch(searchTodo(data))
