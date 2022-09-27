@@ -17,10 +17,10 @@ export default function Todo({todo}){
 
     return (
         <div className={`w-[100%] flex items-center justify-around h-10 rounded-xl mt-4 ${backgroundColor()}`} id='list'>
-            <p className="min-w-[200px] text-center">{title}</p>
-            <p className="min-w-[200px] text-center">{deadline}</p>
-            <p className="min-w-[200px] text-center">{status}</p>
-            <div className="min-w-[200px] flex justify-around">
+            <p className="w-[120px] text-center">{title}</p>
+            <p className="w-[120px] text-center">{deadline}</p>
+            <p className="w-[120px] text-center">{status}</p>
+            <div className="w-[120px] flex justify-around">
                 <button className="border-2 rounded-lg min-w-[60px] hover:bg-black text-center" onClick={()=>dispatch(editTodo(todo))}>edit</button>
                 <button className="border-2 rounded-lg min-w-[60px] hover:bg-black text-center" onClick={()=>dispatch(deleteTodo(id))}>delete</button>
             </div>

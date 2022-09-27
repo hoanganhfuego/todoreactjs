@@ -29,11 +29,11 @@ export default function InputEdit(){
     return (
         <form className=' p-2 create-section flex flex-row items-center justify-around w-[840px] h-[80px] rounded-xl relative' onSubmit={handleSubmit(onSubmit)}>
             <InputText register={register}/>
-            <div className=" min-w-[200px] text-center flex flex-col">
+            <div className=" max-w-[135px] text-center flex flex-col">
                 <InputDeadline register={register}/>
             </div>
             <InputSelect register={register}/>
-            <button className="min-w-[200px] text-center border-2 rounded-xl hover:bg-white">update</button>
+            <button className="max-w-[135px] text-center border-2 rounded-xl hover:bg-white">update</button>
             <div className="search-bar rounded-lg border-2 bg-color2 h-[100%] w-[60px] flex items-center justify-center absolute cursor-pointer right-[-80px]" onClick={()=>{dispatch(chooseSearch()); reset({title: '', status: 'todo', deadline:'', deadline2:''})}}><i className="fa-solid fa-magnifying-glass text-lg"></i></div>
         </form>
     )

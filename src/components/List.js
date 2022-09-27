@@ -16,7 +16,7 @@ export default function List(){
         })
     }
     return (
-        <div className='p-2 list h-[600px] w-[840px] rounded-xl text-white overflow-scroll'>
+        <div className='p-2 list h-[600px] w-[540px] lg:w-[860px] rounded-xl text-white overflow-scroll'>
             {render()}
         </div>
     )
