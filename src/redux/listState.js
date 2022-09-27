@@ -9,7 +9,7 @@ function search(state, action){
     {
         if(title) {
             searchValue = searchValue.filter(todo => {
-                return todo.title.includes(title)
+                return todo.title.toLowerCase().includes(title.toLowerCase())
             })
         }
         if(deadline && deadline2) {
