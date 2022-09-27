@@ -4,15 +4,19 @@ import { addTodo, chooseSearch  } from "../../redux/listState";
 import InputDeadline from "../typesinput/InputDeadline";
 import InputSelect from "../typesinput/InputSelect";
 import InputText from "../typesinput/InputText";
+import { useEffect } from "react";
 
 export default function InputSubmit(){
     const dispatch = useDispatch()
     const onSubmit = data => {
-        console.log(data)
         const id = new Date().toISOString()
         dispatch(addTodo({...data, id: id}))
         reset()
     }
+    useEffect(()=>{
+        console.log('step 1')
+        return ()=>{console.log('step 2')}
+      },[])
     const {register, handleSubmit, reset, formState: { errors } } = useForm()
     return (
         <form className=' p-2 create-section flex flex-row items-center justify-around w-[840px] h-[80px] rounded-xl relative' onSubmit={handleSubmit(onSubmit)}>

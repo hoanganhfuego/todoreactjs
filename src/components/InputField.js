@@ -9,6 +9,7 @@ export default function InputField(){
     const searchChoose = useSelector(state => state.listTodo.search.correct)
 
     function switchInput(){
+        if(searchChoose && editChoose) return < InputEdit />
         if(searchChoose) return < InputSearch />
         if(editChoose) return < InputEdit />
         return <InputSubmit />

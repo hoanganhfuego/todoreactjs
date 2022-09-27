@@ -10,13 +10,21 @@ import { useEffect } from "react";
 export default function InputEdit(){
     const dispatch = useDispatch()
     const editChoose = useSelector(state => state.listTodo.isEditChoose)
+    const searchChoose = useSelector(state => state.listTodo.search.correct)
     const onSubmit = data => {
         dispatch(updateTodo(data))
         reset({title: '', status: 'todo', deadline:''})
     }
     const {register, handleSubmit, reset, formState: { errors } } = useForm()
     useEffect(()=>{
-        if(editChoose.correct) reset(editChoose.value)
+        if(editChoose.correct && !searchChoose){
+            reset(editChoose.value)
+            return
+        }
+        if(editChoose.correct) {
+            reset(editChoose.value)
+            return
+        }
     },[editChoose.value])
     return (
         <form className=' p-2 create-section flex flex-row items-center justify-around w-[840px] h-[80px] rounded-xl relative' onSubmit={handleSubmit(onSubmit)}>

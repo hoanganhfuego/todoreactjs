@@ -5,9 +5,12 @@ import InputDeadlineEnd from "../typesinput/InputDeadlineEnd";
 import InputSelect from "../typesinput/InputSelect";
 import InputText from "../typesinput/InputText";
 import { searchTodo, chooseSearch } from "../../redux/listState";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function InputSearch(){
     const dispatch = useDispatch()
+    const editChoose = useSelector(state => state.listTodo.isEditChoose)
     const onSubmit = data => {
         dispatch(searchTodo(data))
         reset({title: '', status: 'todo', deadline:'', deadline2:''});
