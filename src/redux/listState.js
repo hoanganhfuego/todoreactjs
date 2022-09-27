@@ -5,22 +5,26 @@ const initialState = JSON.parse(localStorage.getItem('todoList')) || []
 function search(state, action){
     const {title, deadline, deadline2, status} = action.payload
     let searchValue = [...state.todolist]
-    if(title) {
-        searchValue = searchValue.filter(todo => {
-            return todo.title.includes(title)
-        })
+    if(title || deadline || deadline2)
+    {
+        if(title) {
+            searchValue = searchValue.filter(todo => {
+                return todo.title.includes(title)
+            })
+        }
+        if(deadline && deadline2) {
+            let minDate = new Date(deadline)
+            let maxDate = new Date(deadline2)
+            searchValue = searchValue.filter(todo => {
+                return (minDate < new Date(todo.deadline) && new Date(todo.deadline) < maxDate)
+            })
+        }
+        if(status) {
+            searchValue = searchValue.filter(todo => todo.status === status)
+        }
+        state.search.value = [...searchValue]
     }
-    if(deadline && deadline2) {
-        let minDate = new Date(deadline)
-        let maxDate = new Date(deadline2)
-        searchValue = searchValue.filter(todo => {
-            return (minDate < new Date(todo.deadline) && new Date(todo.deadline) < maxDate)
-        })
-    }
-    if(status) {
-        searchValue = searchValue.filter(todo => todo.status === status)
-    }
-    state.search.value = [...searchValue]
+    else state.search.value = []
 }
 
 export const ListStore = createSlice({
